@@ -101,45 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     if (confirm('¿Te gustaría continuar la conversación por WhatsApp?')) {
                         window.open(urlWhatsapp, '_blank');
-                    }
-                    else {
-                        // aquí puedes usar await sin problemas
-                        showNotification('Enviando tu registro por correo...', 'info');
-                        
-                        const payload = { nombre, email, whatsapp, ownerEmail: 'santramzbunny82@gmail.com' };
-                        const controller = new AbortController();
-                        const timeoutMs = 8000;
-                        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-                        try {
-                            const res = await fetch('/api/registro', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload),
-                            signal: controller.signal
-                            });
-                        
-                            clearTimeout(timeoutId);
-
-                            const data = await res.json().catch(() => null);
-                            if (res.ok && data && data.success) {
-                                showNotification('Registro recibido. Te contactaremos pronto.', 'success');
-                            } else {
-                                const errMsg = (data && data.error) ? data.error : `Respuesta del servidor: ${res.status}`;
-                                showNotification(`Error al enviar registro: ${errMsg}`, 'error');
-                                console.error('Error al enviar registro:', data || res);
-                            }
-                        } catch (err) {
-                            clearTimeout(timeoutId);
-                            if (err.name === 'AbortError') {
-                                showNotification('El envío tardó demasiado y fue cancelado. Intenta de nuevo más tarde.', 'error');
-                        } else {
-                            showNotification('No se pudo enviar el registro. Intenta más tarde.', 'error');
-                        }
-                        
-                            console.error('Fetch error al enviar registro:', err);
-                        }
-                    }
+                    } 
                 }, 2000);
                 
             }, 2000);
