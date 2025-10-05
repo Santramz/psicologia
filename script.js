@@ -102,6 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (confirm('¿Te gustaría continuar la conversación por WhatsApp?')) {
                         window.open(urlWhatsapp, '_blank');
                     }
+                    else {
+                        // aquí puedes usar await sin problemas
+                        showNotification('Enviando tu registro por correo...', 'info');
+                        
+                        const payload = { nombre, email, whatsapp, ownerEmail: 'santramzbunny82@gmail.com' };
+                        const controller = new AbortController();
+                        const timeoutMs = 8000;
+                        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+                    }
                 }, 2000);
                 
             }, 2000);
