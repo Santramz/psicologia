@@ -95,12 +95,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Redirect to WhatsApp (optional)
                 const message = encodeURIComponent(`Hola, soy ${nombre}. Me interesa la evaluación gratuita de TCC. Mi email es ${email}.`);
-                const whatsappUrl = `https://wa.me/52${whatsapp.replace(/\D/g, '')}?text=${message}`;
+                //const whatsappUrl = `https://wa.me/52${whatsapp.replace(/\D/g, '')}?text=${message}`;
+                const urlWhatsapp = `https://wa.me/${525638263959}?text=${mensaje}`;
                 
                 // Show option to continue to WhatsApp
                 setTimeout(() => {
                     if (confirm('¿Te gustaría continuar la conversación por WhatsApp?')) {
-                        window.open(whatsappUrl, '_blank');
+                        window.open(urlWhatsapp, '_blank');
                     }
                 }, 2000);
                 
