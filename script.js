@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     if (confirm('¿Te gustaría continuar la conversación por WhatsApp?')) {
                         window.open(urlWhatsapp, '_blank');
-                    } 
+                    }
                 }, 2000);
                 
             }, 2000);
@@ -412,3 +412,4 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+
